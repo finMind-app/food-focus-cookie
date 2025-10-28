@@ -6,123 +6,32 @@
   <title>EMIL SVETLICHNYY</title>
   <style>
     /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: #f8f8f8; color: #111; letter-spacing: 0.02em; }
+    body { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 100vh; text-align: center; }
+    header { width: 100%; padding: 20px; display: flex; justify-content: center; }
+    header h1 { font-size: 18px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; }
+    main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 80px; padding: 40px 20px; }
+    section.hero { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    section.hero h2 { font-size: 64px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
+    section.hero p { font-size: 16px; color: #333; max-width: 400px; line-height: 1.6; }
+    section.apps { display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; justify-content: center; }
+    .app { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; }
+    .app-icon { width: 100px; height: 100px; border-radius: 20px; background-color: #eaeaea; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #555; }
+    .app h3 { font-size: 20px; font-weight: 400; text-transform: uppercase; margin-top: 8px; }
 
-    html, body {
-      height: 100%;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background-color: #f8f8f8;
-      color: #111;
-      letter-spacing: 0.02em;
-    }
+    /* Modal */
+    .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
+    .modal-content { background: #fff; padding: 20px; max-width: 90%; max-height: 90%; overflow: auto; border-radius: 10px; display: flex; flex-direction: column; gap: 20px; }
+    .modal-content img { max-width: 100%; border-radius: 10px; }
+    .close { position: absolute; top: 20px; right: 20px; font-size: 30px; color: #fff; cursor: pointer; }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-    header {
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    header h1 {
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 80px;
-      padding: 40px 20px;
-    }
-
-    section.hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    section.hero h2 {
-      font-size: 64px;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    section.hero p {
-      font-size: 16px;
-      color: #333;
-      max-width: 400px;
-      line-height: 1.6;
-    }
-
-    section.apps {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 60px;
-    }
-
-    .app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .app img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      background-color: #eaeaea;
-    }
-
-    .app h3 {
-      font-size: 20px;
-      font-weight: 400;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    footer {
-      width: 100%;
-      padding: 40px 20px;
-      font-size: 14px;
-      color: #666;
-      border-top: 1px solid #ddd;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    footer { width: 100%; padding: 40px 20px; font-size: 14px; color: #666; border-top: 1px solid #ddd; }
+    a { color: inherit; text-decoration: none; }
 
     @media (max-width: 600px) {
-      section.hero h2 {
-        font-size: 40px;
-      }
-      .app img {
-        width: 220px;
-        height: 220px;
-      }
+      section.hero h2 { font-size: 40px; }
+      .app-icon { width: 70px; height: 70px; font-size: 30px; }
     }
   </style>
 </head>
@@ -139,24 +48,53 @@
     </section>
 
     <section class="apps">
-      <div class="app">
-        <img src="https://via.placeholder.com/300x300" alt="App Screenshot">
+      <div class="app" data-screens='["https://via.placeholder.com/300x300","https://via.placeholder.com/300x300/aaaaaa"]'>
+        <div class="app-icon">🍎</div>
         <h3>Food Diary</h3>
       </div>
-      <div class="app">
-        <img src="https://via.placeholder.com/300x300" alt="App Screenshot">
+      <div class="app" data-screens='["https://via.placeholder.com/300x300/ff9999","https://via.placeholder.com/300x300/ffcccc"]'>
+        <div class="app-icon">💰</div>
         <h3>Loan Assistant</h3>
       </div>
-      <div class="app">
-        <img src="https://via.placeholder.com/300x300" alt="App Screenshot">
+      <div class="app" data-screens='["https://via.placeholder.com/300x300/9999ff","https://via.placeholder.com/300x300/ccccff"]'>
+        <div class="app-icon">💬</div>
         <h3>Chat Module</h3>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2025 EMIL SVETLICHNYY — All Rights Reserved · <a href="mailto:hello@emilstudio.com">emilsvetlichnyy@internet.ru</a>
+    © 2025 EMIL SVETLICHNYY — All Rights Reserved · <a href="mailto:emilsvetlichnyy@internet.ru">emilsvetlichnyy@internet.ru</a>
   </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <span class="close" id="modalClose">&times;</span>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <script>
+    const apps = document.querySelectorAll('.app');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('modalClose');
+
+    apps.forEach(app => {
+      app.addEventListener('click', () => {
+        const screens = JSON.parse(app.dataset.screens);
+        modalContent.innerHTML = '';
+        screens.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          modalContent.appendChild(img);
+        });
+        modal.style.display = 'flex';
+      });
+    });
+
+    modalClose.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+  </script>
 
 </body>
 </html>
